@@ -176,7 +176,7 @@ public class LibServiceTest {
         userDto.setFamily("Test Family name");
         userDto.setName("Test name");
         DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        List<Borrow> borrowList = new ArrayList();
+        List<Borrow> borrowList = new ArrayList<>();
         Borrow borrow = Borrow.builder()
                 .borrower("Test Family name,Test name")
                 .book("Micro services")

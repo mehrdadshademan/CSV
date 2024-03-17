@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.3</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.B2B</groupId>
 	<artifactId>demo</artifactId>
@@ -77,18 +77,11 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.apache.tomcat.embed</groupId>-->
-<!--			<artifactId>tomcat-embed-core</artifactId>-->
-<!--			<version>10.1.19</version>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>com.opencsv</groupId>
 			<artifactId>opencsv</artifactId>
 			<version>5.8</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
