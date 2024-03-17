@@ -210,7 +210,14 @@ public class LibService {
                 .title(csvRecord.get("Title"))
                 .genre(csvRecord.get("Genre"))
                 .publisher(csvRecord.get("Publisher")).build();
+        bookValidation(book);
         bookRepository.save(book);
+    }
+
+    private void bookValidation(Book book) {
+        if (StringUtils.isBlank(book.getAuthor()) || StringUtils.isBlank(book.getTitle())) {
+            throw new InputDataException("The Book CSV is not include Title or Author");
+        }
     }
 
     private void parseAndValidateCSVBorrowLine(CSVRecord csvRecord) {
