@@ -1,8 +1,8 @@
 package com.b2b.lib.service;
 
-import com.b2b.lib.dao.BookRepository;
-import com.b2b.lib.dao.BorrowRepository;
-import com.b2b.lib.dao.UserRepository;
+import com.b2b.lib.repository.BookRepository;
+import com.b2b.lib.repository.BorrowRepository;
+import com.b2b.lib.repository.UserRepository;
 import com.b2b.lib.dto.BookDto;
 import com.b2b.lib.dto.UserDto;
 import com.b2b.lib.entity.Book;

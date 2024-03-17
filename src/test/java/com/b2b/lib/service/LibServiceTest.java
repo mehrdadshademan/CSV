@@ -1,8 +1,8 @@
 package com.b2b.lib.service;
 
-import com.b2b.lib.dao.BookRepository;
-import com.b2b.lib.dao.BorrowRepository;
-import com.b2b.lib.dao.UserRepository;
+import com.b2b.lib.repository.BookRepository;
+import com.b2b.lib.repository.BorrowRepository;
+import com.b2b.lib.repository.UserRepository;
 import com.b2b.lib.dto.BookDto;
 import com.b2b.lib.dto.UserDto;
 import com.b2b.lib.entity.Book;
@@ -10,13 +10,10 @@ import com.b2b.lib.entity.Borrow;
 import com.b2b.lib.entity.UserLib;
 import com.b2b.lib.exception.InputDataException;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
