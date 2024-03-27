@@ -11,6 +11,10 @@ import com.b2b.lib.entity.UserLib;
 import com.b2b.lib.exception.InputDataException;
 import com.b2b.lib.mapper.BookMapper;
 import com.b2b.lib.mapper.UserMapper;
+import com.b2b.lib.util.CsvUtil;
+import com.opencsv.bean.CsvToBeanBuilder;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -159,14 +163,42 @@ public class LibService {
         }
     }
 
-    public String insertCSVFiles(MultipartFile user, MultipartFile book, MultipartFile borrowed) {
+    /**
+     * write to CSV file
+     */
+    public  void writeCSV() {
+        UserLib build = userRepository.findAll().getFirst();
+        try {
+            CsvUtil.write(UserLib.class , build) ;
+        } catch (CsvRequiredFieldEmptyException e) {
+            throw new RuntimeException(e);
+        } catch (CsvDataTypeMismatchException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public String insertCSVFiles(MultipartFile user, MultipartFile book, MultipartFile borrowed) throws IOException {
+
+        //this is generic way
+
         csvValidation(user, book, borrowed);
-        parsCsvUser(user);
-        parsCsvBook(book);
-        parsCsvBorrowed(borrowed);
+        List userLibList = CsvUtil.fetch(user, UserLib.class);
+        userRepository.saveAll(userLibList);
+        List bookList = CsvUtil.fetch(book, Book.class);
+        bookRepository.saveAll(bookList);
+        List borrowList = CsvUtil.fetch(borrowed, Borrow.class);
+        borrowRepository.saveAll(borrowList);
+
+        //-------------- this is one way ,
+        //        parsCsvUser(user);
+        //        parsCsvBook(book);
+        //        parsCsvBorrowed(borrowed);
+
+
         log.trace("The CSV files imported");
         return "Insert Of Files are Success";
     }
+
+
 
     private void userValidation(UserLib user) {
         if (StringUtils.isBlank(user.getFamily()) || StringUtils.isBlank(user.getName())) {

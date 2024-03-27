@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -31,7 +32,7 @@ public class RestLibController {
         return new ResponseEntity<>(libService.nonTerminateUserNotBorrowedBook(), HttpStatus.OK);
     }
 
-    @GetMapping("/book/availableBooks")
+        @GetMapping("/book/availableBooks")
     public ResponseEntity<List<BookDto>> availableBooks() {
         return new ResponseEntity<>(libService.availableBooks(), HttpStatus.OK);
     }
@@ -42,7 +43,7 @@ public class RestLibController {
     }
 
     @PostMapping("/insertFiles")
-    public ResponseEntity<String> uploadDeviceCSV(@RequestParam("borrowed") MultipartFile borrowed, @RequestParam("books") MultipartFile book, @RequestParam("user") MultipartFile user) {
+    public ResponseEntity<String> uploadDeviceCSV(@RequestParam("borrowed") MultipartFile borrowed, @RequestParam("books") MultipartFile book, @RequestParam("user") MultipartFile user) throws IOException {
         return new ResponseEntity<>(libService.insertCSVFiles(user, book, borrowed), HttpStatus.OK);
     }
 
